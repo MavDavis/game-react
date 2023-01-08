@@ -43,7 +43,7 @@ const Box = () => {
     );
   };
   return (
-    <>
+    <div className="mother">
       <div className="box">
           {dieArray.map((item, ind) => (
             <Die
@@ -59,7 +59,7 @@ const Box = () => {
       <button className="btn" onClick={reloadDieArray}>
         {btn}
       </button>
-    </>
+    </div>
   );
 };
 export default Box;
