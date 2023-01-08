@@ -1,7 +1,11 @@
-const Die = (props)=>{
-    console.log(props);
-    return <div className="die">
-    <p>{props.value}</p>
+const Die = ({ value, handleChange, isHeld }) => {
+  return (
+    <div
+      className={isHeld ? "green-bg die" : "white-bg die"}
+      onClick={handleChange}
+    >
+      <p>{value}</p>
     </div>
-    }
-    export default Die
+  );
+};
+export default Die;
