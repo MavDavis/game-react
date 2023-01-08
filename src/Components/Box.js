@@ -1,8 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Die from "./Die";
 
 const Box = () => {
+  const [btn, setBtn] = useState("Roll");
   const [dieArray, setDieArray] = useState(setDie());
+  useEffect(() => {
+    if (dieArray.every((item) => item.isHeld)) {
+      setBtn("Reset");
+    } else {
+      setBtn("Roll");
+    }
+  }, [dieArray]);
 
   function setDie() {
     let newArray = [];
@@ -16,13 +24,16 @@ const Box = () => {
     return newArray;
   }
   const reloadDieArray = () => {
-    // setDieArray(setDie());
-    
-    setDieArray((oldValue) =>
-      oldValue.map((item) =>
-        item.isHeld ?  item : { ...item, num: Math.floor(Math.random() * 6) } 
-      )
-    );
+    const checkAllDieArray = dieArray.every((item) => item.isHeld);
+    if (checkAllDieArray) {
+      setDieArray(setDie());
+    } else {
+      setDieArray((oldValue) =>
+        oldValue.map((item) =>
+          item.isHeld ? item : { ...item, num: Math.floor(Math.random() * 6) }
+        )
+      );
+    }
   };
   const handleDieClick = (id) => {
     setDieArray((oldValue) =>
@@ -32,21 +43,23 @@ const Box = () => {
     );
   };
   return (
-    <div className="box">
-      {dieArray.map((item, ind) => (
-        <Die
-          value={item.num}
-          key={ind}
-          isHeld={item.isHeld}
-          handleChange={() => {
-            handleDieClick(item.id);
-          }}
-        />
-      ))}
+    <>
+      <div className="box">
+          {dieArray.map((item, ind) => (
+            <Die
+              value={item.num}
+              key={ind}
+              isHeld={item.isHeld}
+              handleChange={() => {
+                handleDieClick(item.id);
+              }}
+            />
+          ))}
+      </div>
       <button className="btn" onClick={reloadDieArray}>
-        roll
+        {btn}
       </button>
-    </div>
+    </>
   );
 };
 export default Box;

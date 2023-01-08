@@ -22,7 +22,8 @@
   height: 100%;
 
   display: grid;
-grid-template-columns: auto/auto (repeat, 5fr);}
+  grid-template-columns: repeat(5, 1fr);
+  gap: 3px;}
 main {
   position: relative;
   border: 30px solid black;
