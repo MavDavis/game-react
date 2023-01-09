@@ -4,6 +4,7 @@
   margin: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+  /*  */
 }
 .App {
   margin: auto;
@@ -39,7 +40,6 @@ main {
 .die {
   border-radius: 10px;
   cursor: pointer;
-
   width: 50px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   display: flex;
